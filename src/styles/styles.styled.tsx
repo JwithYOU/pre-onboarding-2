@@ -52,9 +52,10 @@ const S = {
       display: flex;
     }
   `,
-  FormWrapper: styled.div`
+  FormWrapper: styled.div<{ inputFocus: boolean }>`
     border-radius: 42px;
-    border: 2px solid #ffffff;
+    border: ${(props) =>
+      props.inputFocus ? "2px solid #0074cc;" : "2px solid #ffffff;"}
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -102,11 +103,6 @@ const S = {
     flex-direction: row;
     display: flex;
   `,
-  // Input: styled.div`
-  //   padding-right: 25px;
-  //   width: 100%;
-  //   background-color: transparent;
-  // `,
   Input: styled.input`
     padding-right: 25px;
     width: 100%;
@@ -114,6 +110,12 @@ const S = {
     min-width: 0;
     flex: 1;
     background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
   `,
   GrayMagnifier: styled.div`
     width: 16px;

@@ -1,12 +1,18 @@
+import React from "react";
 import S from "../styles/styles.styled";
 
-const searchInput = () => {
+interface IsSearchInput {
+  onFocus: () => void;
+  onBlur: () => void;
+}
+
+const searchInput = (props: IsSearchInput) => {
   return (
     <S.FormInner>
       <S.InnerWrapper>
         <S.LabelWrapper>
           <S.Label>
-            <S.LabelInner>질환명을 검색해 주세요.</S.LabelInner>
+            <S.LabelInner />
           </S.Label>
         </S.LabelWrapper>
         <S.Placeholder>
@@ -26,7 +32,11 @@ const searchInput = () => {
                 <S.InputPlease>질환명을 입력해 주세요.</S.InputPlease>
               </S.WatermarkContent>
             </S.WatermarkContainer>
-            <S.Input style={{ caretColor: "rgb(25, 118, 210)" }} />
+            <S.Input
+              onFocus={props.onFocus}
+              onBlur={props.onBlur}
+              style={{ caretColor: "rgb(25, 118, 210)" }}
+            />
           </S.InnerPlaceholder>
         </S.Placeholder>
       </S.InnerWrapper>
