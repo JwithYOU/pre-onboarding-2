@@ -2,6 +2,7 @@ import React from "react";
 import S from "../styles/styles.styled";
 import SearchInput from "./searchInput";
 import SearchButton from "./searchButton";
+import SearchList from "./searchList";
 
 interface IsSearchForm {
   onFocus: () => void;
@@ -21,6 +22,7 @@ const SearchForm = (props: IsSearchForm) => {
             inputFocus={props.inputFocus}
           />
           <SearchButton />
+          {props.inputFocus && <SearchList />}
         </S.FormWrapper>
       </S.FormContainer>
     </S.ContentInner>
