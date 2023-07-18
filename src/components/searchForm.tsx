@@ -15,7 +15,11 @@ const SearchForm = (props: IsSearchForm) => {
     <S.ContentInner>
       <S.FormContainer>
         <S.FormWrapper inputFocus={props.inputFocus}>
-          <SearchInput onFocus={props.onFocus} onBlur={props.onBlur} />
+          <SearchInput
+            onFocus={props.onFocus}
+            onBlur={props.onBlur}
+            inputFocus={props.inputFocus}
+          />
           <SearchButton />
         </S.FormWrapper>
       </S.FormContainer>
