@@ -5,6 +5,8 @@ interface IsSearchInput {
   onFocus: () => void;
   onBlur: () => void;
   inputFocus: boolean;
+  searchKeyword: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const searchInput = (props: IsSearchInput) => {
@@ -18,7 +20,7 @@ const searchInput = (props: IsSearchInput) => {
         </S.LabelWrapper>
         <S.Placeholder>
           <S.InnerPlaceholder>
-            {props.inputFocus ? (
+            {props.inputFocus || props.searchKeyword.length > 0 ? (
               <></>
             ) : (
               <S.WatermarkContainer>
@@ -40,6 +42,8 @@ const searchInput = (props: IsSearchInput) => {
             <S.Input
               onFocus={props.onFocus}
               onBlur={props.onBlur}
+              value={props.searchKeyword}
+              onChange={props.onChange}
               style={{ caretColor: "rgb(25, 118, 210)" }}
             />
           </S.InnerPlaceholder>

@@ -9,6 +9,8 @@ interface IsSearchForm {
   onBlur: () => void;
   inputFocus: boolean;
   setInputFocus: React.Dispatch<React.SetStateAction<boolean>>;
+  searchKeyword: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchForm = (props: IsSearchForm) => {
@@ -19,10 +21,14 @@ const SearchForm = (props: IsSearchForm) => {
           <SearchInput
             onFocus={props.onFocus}
             onBlur={props.onBlur}
+            onChange={props.onChange}
+            searchKeyword={props.searchKeyword}
             inputFocus={props.inputFocus}
           />
           <SearchButton />
-          {props.inputFocus && <SearchList />}
+          {props.inputFocus && (
+            <SearchList searchKeyword={props.searchKeyword} />
+          )}
         </S.FormWrapper>
       </S.FormContainer>
     </S.ContentInner>

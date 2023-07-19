@@ -234,6 +234,29 @@ const S = {
     overflow: hidden;
     border-radius: 20px;
   `,
+  InsertSearchList: styled.div`
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    display: flex;
+    padding: 8px 24px;
+    cursor: pointer;
+  `,
+  ListMagnifier: styled.div`
+    color: rgb(167, 175, 183);
+    align-self: flex-start;
+    min-width: 16px;
+    height: 16px;
+    margin-top: 3px;
+  `,
+  MagnifierMargin: styled.div`
+    margin-right: 12px;
+  `,
+  ListKeywords: styled.div`
+    font-family: inherit;
+    font-weight: 700;
+  `,
 };
 
 export default S;
