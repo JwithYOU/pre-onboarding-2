@@ -44,6 +44,8 @@ const Main = () => {
           setInputFocus={setInputFocus}
           onBlur={inputOnBlursHandler}
           searchResponse={searchResponse}
+          getSearchData={getSearchData}
+          isSearching={isSearching}
         />
       </S.ContentWrapper>
     </S.MainContainer>

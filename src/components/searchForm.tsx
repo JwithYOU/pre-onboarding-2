@@ -13,6 +13,8 @@ interface IsSearchForm {
   searchKeyword: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchResponse: SearchResponseItem[];
+  getSearchData: (e: React.SyntheticEvent) => void;
+  isSearching: boolean;
 }
 
 const SearchForm = (props: IsSearchForm) => {
