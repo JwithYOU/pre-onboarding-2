@@ -16,7 +16,7 @@ const axiosApi = ({ options }: any) => {
     (error) => {
       console.log("interceptors > error", error);
       return Promise.reject(error);
-    }
+    },
   );
 
   instance.interceptors.request.use(
@@ -27,7 +27,7 @@ const axiosApi = ({ options }: any) => {
     (error) => {
       console.log("intercepters > error", error);
       return Promise.reject(error);
-    }
+    },
   );
 
   instance.defaults.timeout = 5000;

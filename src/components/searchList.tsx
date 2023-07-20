@@ -1,11 +1,15 @@
 import React from "react";
 import S from "../styles/styles.styled";
+import { SearchResponseItem } from "../Main";
 
 interface IsSearchList {
   searchKeyword: string;
+  searchResponse: SearchResponseItem[];
 }
 
 const searchList = (props: IsSearchList) => {
+  // console.log("검색결과", props.searchResponse);
+
   return (
     <S.ListContainer>
       <S.ListWrapper>

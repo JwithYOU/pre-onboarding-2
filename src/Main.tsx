@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 import S from "./styles/styles.styled";
 import SearchForm from "./components/searchForm";
+import useSearch from "./hooks/useSearch";
+import { DEBOUNCED_TIME } from "./utils/constants";
+
+export interface SearchResponseItem {
+  id: number;
+  name: string;
+}
 
 const Main = () => {
   const [inputFocus, setInputFocus] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const { searchResponse, isSearching, handleSearch, getSearchData } =
+    useSearch({
+      searchKeyword,
+      debounceDelay: DEBOUNCED_TIME,
+    });
 
   const inputOnFocusHandler = () => {
     setInputFocus(true);
@@ -31,6 +43,7 @@ const Main = () => {
           onChange={searchKeywordHandler}
           setInputFocus={setInputFocus}
           onBlur={inputOnBlursHandler}
+          searchResponse={searchResponse}
         />
       </S.ContentWrapper>
     </S.MainContainer>

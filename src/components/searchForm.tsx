@@ -3,6 +3,7 @@ import S from "../styles/styles.styled";
 import SearchInput from "./searchInput";
 import SearchButton from "./searchButton";
 import SearchList from "./searchList";
+import { SearchResponseItem } from "../Main";
 
 interface IsSearchForm {
   onFocus: () => void;
@@ -11,6 +12,7 @@ interface IsSearchForm {
   setInputFocus: React.Dispatch<React.SetStateAction<boolean>>;
   searchKeyword: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchResponse: SearchResponseItem[];
 }
 
 const SearchForm = (props: IsSearchForm) => {
@@ -27,7 +29,10 @@ const SearchForm = (props: IsSearchForm) => {
           />
           <SearchButton />
           {props.inputFocus && (
-            <SearchList searchKeyword={props.searchKeyword} />
+            <SearchList
+              searchKeyword={props.searchKeyword}
+              searchResponse={props.searchResponse}
+            />
           )}
         </S.FormWrapper>
       </S.FormContainer>
