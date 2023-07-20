@@ -46,6 +46,7 @@ const Main = () => {
           searchResponse={searchResponse}
           getSearchData={getSearchData}
           isSearching={isSearching}
+          handleSearch={handleSearch}
         />
       </S.ContentWrapper>
     </S.MainContainer>

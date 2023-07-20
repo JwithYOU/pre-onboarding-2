@@ -15,6 +15,7 @@ interface IsSearchForm {
   searchResponse: SearchResponseItem[];
   getSearchData: (e: React.SyntheticEvent) => void;
   isSearching: boolean;
+  handleSearch: (searchKeyword: string) => void;
 }
 
 const SearchForm = (props: IsSearchForm) => {
