@@ -12,7 +12,7 @@ interface UserSearchProps {
 
 const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
   const [searchResponse, setSearchResponse] = useState<SearchResponseItem[]>(
-    [],
+    []
   );
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const debouncedSearchTerm = useDebounce(searchKeyword, debounceDelay);
@@ -29,9 +29,9 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
   };
 
   const handleSearch = async (searchKeyword: string) => {
-    console.log(searchKeyword);
     if (searchKeyword.trim() !== "") {
-      const isCached = checkCacheAndResponse(searchKeyword);
+      // const isCached = checkCacheAndResponse(searchKeyword);
+      const isCached = false;
       if (!isCached) {
         setIsSearching(true);
         const response = await API.search({ name: searchKeyword });
@@ -47,7 +47,7 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
     await handleSearch(searchKeyword);
 
     const recentSearch = JSON.parse(
-      localStorage.getItem("recentSearch") || "[]",
+      localStorage.getItem("recentSearch") || "[]"
     );
     recentSearch.push(searchKeyword);
     localStorage.setItem("recentSearch", JSON.stringify(recentSearch));

@@ -8,28 +8,6 @@ const axiosApi = ({ options }: any) => {
     ...options,
   });
 
-  instance.interceptors.request.use(
-    (response) => {
-      console.log("interceptors > request", response);
-      return response;
-    },
-    (error) => {
-      console.log("interceptors > error", error);
-      return Promise.reject(error);
-    },
-  );
-
-  instance.interceptors.request.use(
-    (request) => {
-      console.log("intercepters > request", request);
-      return request;
-    },
-    (error) => {
-      console.log("intercepters > error", error);
-      return Promise.reject(error);
-    },
-  );
-
   instance.defaults.timeout = 5000;
   return instance;
 };
