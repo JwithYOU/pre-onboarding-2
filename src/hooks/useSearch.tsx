@@ -41,7 +41,7 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
         }
       }
     },
-    [addItem, API]
+    [addItem, API, getItem]
   );
 
   const getSearchData = async (e: React.SyntheticEvent) => {
