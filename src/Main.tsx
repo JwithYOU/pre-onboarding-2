@@ -3,14 +3,8 @@ import S from "./styles/styles.styled";
 import SearchForm from "./components/searchForm";
 import useSearch from "./hooks/useSearch";
 import { DEBOUNCED_TIME } from "./utils/constants";
-import axios from "axios";
 
 export interface SearchResponseItem {
-  id: number;
-  name: string;
-}
-
-interface ISearchData {
   id: number;
   name: string;
 }
@@ -34,27 +28,6 @@ const Main = () => {
 
   const searchKeywordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
-    searchingData(e.target.value);
-  };
-
-  const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
-
-  const searchingData = async (keyword: string) => {
-    try {
-      const res = await axios.get<ISearchData[]>(
-        `${PROXY}/api/v1/search-conditions/?name=${keyword}`
-      );
-      console.info("calling api");
-
-      // if (res.statusText !== 'OK') throw new Error(`${res.statusText} (${res.status})`);
-
-      const data = res.data.slice(0, 7);
-      console.log("data: ", data);
-      return data;
-    } catch (error) {
-      console.error("Fetch error! ", error);
-      throw error;
-    }
   };
 
   return (

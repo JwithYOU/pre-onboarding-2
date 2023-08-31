@@ -30,13 +30,12 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
 
   const handleSearch = async (searchKeyword: string) => {
     if (searchKeyword.trim() !== "") {
-      // const isCached = checkCacheAndResponse(searchKeyword);
-      const isCached = false;
-      if (!isCached) {
+      const isCached = checkCacheAndResponse(searchKeyword);
+      if (!(await isCached)) {
         setIsSearching(true);
-        const response = await API.search({ name: searchKeyword });
-        setSearchResponse(response.data);
-        addItem(searchKeyword, response.data, ONE_HOUR);
+        const response = await API(searchKeyword);
+        setSearchResponse(response);
+        addItem(searchKeyword, response, ONE_HOUR);
         setIsSearching(false);
       }
     }
@@ -57,7 +56,6 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
 
   useEffect(() => {
     const isNotEmpty = debouncedSearchTerm.trim() !== "";
-
     isNotEmpty && handleSearch(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 

@@ -6,6 +6,6 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: "https://api.clinicaltrialskorea.com",
       changeOrigin: true,
-    })
+    }),
   );
 };
