@@ -22,7 +22,6 @@ const API = async (keyword: string) => {
     const res = await axios.get<ISearchData[]>(
       `${PROXY}/api/v1/search-conditions/?name=${keyword}`
     );
-    console.info("calling api");
     const data = res.data.slice(0, 7);
     // cache 넣는 코드 있음
     return data;
