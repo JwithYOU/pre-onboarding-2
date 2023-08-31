@@ -18,18 +18,18 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
   const debouncedSearchTerm = useDebounce(searchKeyword, debounceDelay);
   const { addItem, getItem } = useExpiryCache();
 
-  const checkCacheAndResponse = async (searchKeyword: string) => {
-    const cache = getItem(searchKeyword);
-    if (cache) {
-      setSearchResponse(cache);
-      setIsSearching(false);
-      return true;
-    }
-    return false;
-  };
-
   const handleSearch = useCallback(
     async (searchKeyword: string) => {
+      const checkCacheAndResponse = async (searchKeyword: string) => {
+        const cache = await getItem(searchKeyword);
+        if (cache) {
+          setSearchResponse(cache);
+          setIsSearching(false);
+          return true;
+        }
+        return false;
+      };
+
       if (searchKeyword.trim() !== "") {
         const isCached = checkCacheAndResponse(searchKeyword);
         if (!(await isCached)) {
@@ -41,7 +41,7 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
         }
       }
     },
-    [checkCacheAndResponse, addItem]
+    [addItem, API]
   );
 
   const getSearchData = async (e: React.SyntheticEvent) => {
