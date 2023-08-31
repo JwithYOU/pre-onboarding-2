@@ -19,7 +19,7 @@ const API = async (keyword: string) => {
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   try {
     const res = await axios.get<ISearchData[]>(
-      `${PROXY}/api/v1/search-conditions/?name=${keyword}`
+      `${PROXY}/api/v1/search-conditions/?name=${keyword}`,
     );
     const data = res.data.slice(0, 7);
     // cache 넣는 코드 있음

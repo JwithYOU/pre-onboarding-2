@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import API from "../apis/API";
 import { SearchResponseItem } from "../Main";
 import useDebounce from "./useDebounce";
@@ -28,18 +28,21 @@ const useSearch = ({ searchKeyword, debounceDelay }: UserSearchProps) => {
     return false;
   };
 
-  const handleSearch = async (searchKeyword: string) => {
-    if (searchKeyword.trim() !== "") {
-      const isCached = checkCacheAndResponse(searchKeyword);
-      if (!(await isCached)) {
-        setIsSearching(true);
-        const response = await API(searchKeyword);
-        setSearchResponse(response);
-        addItem(searchKeyword, response, ONE_HOUR);
-        setIsSearching(false);
+  const handleSearch = useCallback(
+    async (searchKeyword: string) => {
+      if (searchKeyword.trim() !== "") {
+        const isCached = checkCacheAndResponse(searchKeyword);
+        if (!(await isCached)) {
+          setIsSearching(true);
+          const response = await API(searchKeyword);
+          setSearchResponse(response);
+          addItem(searchKeyword, response, ONE_HOUR);
+          setIsSearching(false);
+        }
       }
-    }
-  };
+    },
+    [checkCacheAndResponse, API, addItem]
+  );
 
   const getSearchData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
