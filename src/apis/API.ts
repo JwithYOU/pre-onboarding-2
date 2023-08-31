@@ -16,7 +16,6 @@ export interface ISearchData {
 }
 
 const API = async (keyword: string) => {
-  console.log("keyword: ", keyword);
   const PROXY = window.location.hostname === "localhost" ? "" : "/proxy";
   try {
     const res = await axios.get<ISearchData[]>(
